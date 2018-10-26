@@ -1,10 +1,10 @@
-from django.db import models
+from mongoengine import fields, Document
 
 
-class Player(models.Model):
+class Player(Document):
     """This class represents the request model."""
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=255)
+    id = fields.IntField(primary_key=True)
+    name = fields.StringField(max_length=255)
 
     def __str__(self):
         """Return a human readable representation of the model instance."""

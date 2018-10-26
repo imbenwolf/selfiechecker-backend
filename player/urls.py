@@ -1,4 +1,4 @@
-from rest_framework import routers
+from rest_framework_mongoengine import routers
 from .views import PlayerViewSet
 
 router = routers.DefaultRouter()

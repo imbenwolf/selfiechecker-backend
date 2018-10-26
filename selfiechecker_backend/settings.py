@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import mongoengine
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_mongoengine',
     'player'
 ]
 
@@ -71,17 +71,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'selfiechecker_backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+DATABASE = {
+    'HOST': os.getenv('COSMO_HOST'),
+    'PORT': os.getenv('COSMO_PORT'),
+    'NAME': os.getenv('COSMO_DATABASE'),
+    'REPLICASET': os.getenv('COSMO_REPLICASET'),
+    'USER': os.getenv('COSMO_USERNAME'),
+    'PASSWORD': os.getenv('COSMO_PASSWORD'),
+    'SSL_CONFIG': {
+        'ssl': os.getenv('COSMO_SSL'),
     }
 }
 
+mongoengine.connect(
+    host=DATABASE['HOST'],
+    port=DATABASE['PORT'],
+    db=DATABASE['NAME'],
+    replicaset=DATABASE['REPLICASET'],
+    username=DATABASE['USER'],
+    password=DATABASE['PASSWORD'],
+    **DATABASE['SSL_CONFIG']
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -101,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -114,7 +126,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

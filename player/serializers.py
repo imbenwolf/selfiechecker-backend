@@ -1,8 +1,8 @@
-from rest_framework import serializers
+from rest_framework_mongoengine import serializers
 from .models import Player
 
 
-class PlayerSerializer(serializers.ModelSerializer):
+class PlayerSerializer(serializers.DocumentSerializer):
     """Serializer to map the Model instance into JSON format."""
 
     class Meta:
