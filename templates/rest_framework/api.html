@@ -1,0 +1,14 @@
+{% extends "rest_framework/base.html" %}
+
+{% block bootstrap_theme %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/material_bootstrap.min.css" %}">
+{% endblock %}
+
+{% block branding %}
+    <span>
+      <a href="" class="navbar-brand">
+          SelfieChecker API <span class="version">1</span>
+      </a>
+    </span>
+{% endblock %}
