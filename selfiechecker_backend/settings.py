@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'selfiechecker_backend.wsgi.application'
 
 DATABASE = {
     'HOST': os.getenv('COSMO_HOST'),
-    'PORT': os.getenv('COSMO_PORT'),
+    'PORT': int(os.getenv('COSMO_PORT')),
     'NAME': os.getenv('COSMO_DATABASE'),
     'REPLICASET': os.getenv('COSMO_REPLICASET'),
     'USER': os.getenv('COSMO_USERNAME'),
