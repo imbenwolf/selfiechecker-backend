@@ -25,7 +25,9 @@ SECRET_KEY = '2mxaere8d9m2w10f4w6j^zk_kcv!!@5oz6qy(kysi#we_3w#73'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'selfiechecker-backend.azurewebsites.net'
+]
 
 # Application definition
 
