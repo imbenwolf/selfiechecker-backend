@@ -22,7 +22,6 @@ class PlayerCrawler:
         "https://www.transfermarkt.ch/gregory-wuthrich/profil/spieler/203125",
         "https://www.transfermarkt.ch/loris-benito/profil/spieler/119085",
         "https://www.transfermarkt.ch/jan-kronig/profil/spieler/346881",
-        "https://www.transfermarkt.ch/david-von-ballmoos/profil/spieler/203124",
         "https://www.transfermarkt.ch/pedro-teixeira/profil/spieler/433189",
         "https://www.transfermarkt.ch/jordan-lotomba/profil/spieler/313094",
         "https://www.transfermarkt.ch/sandro-lauper/profil/spieler/254965",
@@ -40,6 +39,21 @@ class PlayerCrawler:
             player_info = cls.__get_player_info(url)
             print("Added " + player_info['name'] + " from " + url)
             players.append(player_info)
+
+        joker_info = {
+            'name': 'Quentin Hübscher',
+            'jerseyNumber': '5',
+            'imageUrl': 'http://tomdev.ch/ignore/quentin.jpg',
+            'birthday': '03.11.2011',
+            'birthplace': 'Bärn',
+            'age': '5',
+            'height': 'gross',
+            'nationality': 'CH',
+            'position': 'Stürmer',
+            'foot': 'Rechts'
+        }
+
+        players.append(joker_info)
         return players
 
     @classmethod
@@ -51,6 +65,11 @@ class PlayerCrawler:
         player_name = page_soup.find_all("h1", {"itemprop": "name"})[0].text
         player_jersy_number = page_soup.find_all("span", {"class": "dataRN"})[0].text[1:]
         player_image_url = page_soup.find_all("div", {"class": "dataBild"})[0].find("img")["src"]
+
+        # Sad hack due to time pressure :(
+        if player_name == "Miralem Sulejmani" or player_name == "Kevin Mbabu":
+            player_data_table.pop(0)
+
         player_birthday = player_data_table[0].text.strip()
         player_birthplace = player_data_table[1].text.replace("\n", "").replace("\xa0", "").strip()
         player_age = player_data_table[2].text
@@ -58,8 +77,6 @@ class PlayerCrawler:
         player_nationality = player_data_table[4].text.replace("\n", "").replace("\xa0", "").replace("\t", "")
         player_position = player_data_table[5].text.replace("\r", "").replace("\n", "").replace("\t", "")
         player_foot = player_data_table[6].text
-        player_in_team_since = player_data_table[9].text.replace("\r", "").replace("\n", "").replace("\t", "")
-        player_contract_until = player_data_table[10].text
 
         player_infos = {
             'name': player_name,
@@ -71,9 +88,7 @@ class PlayerCrawler:
             'height': player_height,
             'nationality': player_nationality,
             'position': player_position,
-            'foot': player_foot,
-            'inTeamSince': player_in_team_since,
-            'contractUntil': player_contract_until
+            'foot': player_foot
         }
 
         return player_infos
