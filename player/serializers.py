@@ -9,7 +9,6 @@ class PlayerSerializer(serializers.DocumentSerializer):
         model = Player
         fields = (
             'id',
-            'azurePersonId',
             'name',
             'jerseyNumber',
             'imageUrl',
@@ -20,6 +19,4 @@ class PlayerSerializer(serializers.DocumentSerializer):
             'nationality',
             'position',
             'foot',
-            'inTeamSince',
-            'contractUntil'
         )
