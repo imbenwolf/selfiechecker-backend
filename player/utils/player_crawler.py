@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class PlayerInfos():
+class PlayerCrawler:
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'}
     urls = [
         "https://www.transfermarkt.ch/david-von-ballmoos/profil/spieler/203124",
@@ -38,6 +38,7 @@ class PlayerInfos():
         players = []
         for url in cls.urls:
             player_info = cls.__get_player_info(url)
+            print("Added " + player_info['name'] + " from " + url)
             players.append(player_info)
         return players
 
