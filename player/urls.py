@@ -1,12 +1,7 @@
-from rest_framework_mongoengine import routers
 from django.urls import path
-from .views import PlayerViewSet, UpdatePlayerView
-
-router = routers.DefaultRouter()
-router.register(r'', PlayerViewSet)
+from .views import PlayerView, UpdatePlayerView
 
 urlpatterns = [
+    path('', PlayerView.as_view()),
     path('update/', UpdatePlayerView.as_view()),
 ]
-
-urlpatterns += router.urls
