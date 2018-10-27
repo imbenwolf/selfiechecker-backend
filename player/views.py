@@ -13,7 +13,14 @@ class PlayerView(APIView):
     """
     parser_classes = (FileUploadParser,)
 
-    def put(self, request, format=None):
+    @staticmethod
+    def get(format=None):
+        players = Player.objects.all()
+        player_serializer = PlayerSerializer(players, many=True)
+        return Response(player_serializer.data)
+
+    @staticmethod
+    def put(request, format=None):
         file = request.data['file']
         player_name = PlayerIdentifier.get_person_from_image(file)[0]
         player = Player.objects.filter(name=player_name)[0]
