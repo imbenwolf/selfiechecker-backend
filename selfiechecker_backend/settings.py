@@ -26,6 +26,7 @@ SECRET_KEY = '2mxaere8d9m2w10f4w6j^zk_kcv!!@5oz6qy(kysi#we_3w#73'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
     'selfiechecker-backend.azurewebsites.net'
 ]
 
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+APPEND_SLASH = False
 
 ROOT_URLCONF = 'selfiechecker_backend.urls'
 
