@@ -58,6 +58,9 @@ MIDDLEWARE = [
 APPEND_SLASH = False
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = (
+    'Content-Disposition'
+)
 
 ROOT_URLCONF = 'selfiechecker_backend.urls'
 
