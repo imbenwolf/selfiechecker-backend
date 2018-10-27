@@ -60,7 +60,16 @@ APPEND_SLASH = False
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_HEADERS = (
-    'Content-Disposition'
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'content-disposition',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 )
 
 ROOT_URLCONF = 'selfiechecker_backend.urls'
