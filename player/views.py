@@ -9,7 +9,7 @@ from .utils.player_identifier import PlayerIdentifier
 
 class PlayerView(APIView):
     """
-    API endpoint that allows player to be viewed
+    API endpoint that allows players to be viewed and a player to be detected by a selfie
     """
     parser_classes = (FileUploadParser,)
 
@@ -30,7 +30,7 @@ class PlayerView(APIView):
 
 class UpdatePlayerView(APIView):
     """
-    List all snippets, or create a new snippet.
+    API endpoint that updates the information of the players aswell as setup and train the image recognition ai
     """
     @staticmethod
     def get(request, format=None):
